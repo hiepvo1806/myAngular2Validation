@@ -5,7 +5,7 @@
         AppKey
       </label>
       <div class="col-10">
-        <input [(ngModel)]="formData.appKey" name="appKey">
+        <input [(ngModel)]="formData.appKey" name="appKey" required >
         <div [hidden]="!formErrors.appKey" class="form-control-feedback">{{formErrors.appKey}}</div>
       </div>
     </div>
@@ -14,7 +14,7 @@
         Name *
       </label>
       <div class="col-10">
-        <input type="text" class="form-control m-input" [disabled]="isViewFormMode" [(ngModel)]="formData.name" name="name" required>
+        <input type="text" class="form-control m-input" [disabled]="isViewFormMode" [(ngModel)]="formData.name" name="name" required isUnique>
         <div [hidden]="!formErrors.name" class="form-control-feedback">{{formErrors.name}}</div>
       </div>
     </div>
@@ -24,7 +24,7 @@
         Description
       </label>
       <div class="col-10">
-        <input type="text" class="form-control m-input" [disabled]="isViewFormMode" [(ngModel)]="formData.description" name="description">
+        <input type="text" class="form-control m-input" [disabled]="isViewFormMode" [(ngModel)]="formData.description" name="description" required>
         <div [hidden]="!formErrors.description" class="form-control-feedback">{{formErrors.description}}</div>
       </div>
     </div>
