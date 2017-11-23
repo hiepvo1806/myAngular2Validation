@@ -18,9 +18,8 @@ export class BaseFormValidationService {
             var control = formGroup.form.controls[controlName];
             var controlValid = !control.invalid;
             var errorMsgs = [];
-            //var rule = _validationRules.find(p => p.controlName == controlName);
-
-            var specifyRules = _validationRules.filter(p => p.controlName == controlName && p.type == ValidationType.specific);
+            //specific rules
+            var specifyRules = _validationRules.filter(p => (p.controlName == controlName || p.controlName=='all' ) && p.type == ValidationType.specific);
             specifyRules.forEach(rule => {
                 var ruleResult = rule.validator(control.value);
                 if(!ruleResult.isValid) {

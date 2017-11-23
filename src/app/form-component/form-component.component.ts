@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { BaseFormValidationService, ValidationRule, ValidationFunctionResult ,ValidationType} from '../base-validator';
+import { BaseFormValidationService, ValidationRule, ValidationFunctionResult, ValidationType } from '../base-validator';
 
 @Component({
   selector: 'app-form-component',
@@ -22,12 +22,31 @@ export class FormComponentComponent implements OnInit {
       errorMessage: "This field is required"
     },
     {
+      controlName:"all",
+      type: ValidationType.specific,
+      errorMessage:"This field is contain specific character!",
+      validator:(value:string) : ValidationFunctionResult => {
+        let charArr = ['@','!','%']; 
+        let isValid = true;
+        if (value) {
+          charArr.forEach(element => {
+            isValid = isValid && !(value.indexOf(element)!=-1);
+          });
+        }
+        
+        return {
+          isValid:isValid,
+          errorMessage: "This field is contain specific character!"
+        };
+      }
+    },
+    {
       controlName: "name",
       type: ValidationType.specific,
       errorMessage: "This field is need to be unique",
       validator: (value: string): ValidationFunctionResult => {
         let nameArr = ["Hiep", "Trung"]
-        if (nameArr.indexOf(value)!=-1)
+        if (nameArr.indexOf(value) != -1)
           return {
             isValid: false,
             errorMessage: "This field is need to be unique"
