@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { BaseFormValidationService, ValidationRule, ValidationFunctionResult } from '../base-validator';
+import { BaseFormValidationService, ValidationRule, ValidationFunctionResult ,ValidationType} from '../base-validator';
 
 @Component({
   selector: 'app-form-component',
@@ -23,6 +23,7 @@ export class FormComponentComponent implements OnInit {
     },
     {
       controlName: "name",
+      type: ValidationType.specific,
       errorMessage: "This field is need to be unique",
       validator: (value: string): ValidationFunctionResult => {
         let nameArr = ["Hiep", "Trung"]
