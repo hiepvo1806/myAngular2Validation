@@ -11,7 +11,7 @@ export class FormComponentComponent implements OnInit {
   private formData: FormDataModel = new FormDataModel();
   private _validationRules: Array<ValidationRule> = new Array<ValidationRule>();
   private formErrors: any = {};
-
+  private isShowingInnerError: boolean = true;
   constructor(private _validatorService: BaseFormValidationService) {
 
   }
@@ -22,21 +22,22 @@ export class FormComponentComponent implements OnInit {
       errorMessage: "This field is required"
     },
     {
-      controlName:"all",
+      controlName: "all",
       type: ValidationType.specific,
-      errorMessage:"This field is contain specific character!",
-      validator:(value:string) : ValidationFunctionResult => {
-        let charArr = ['@','!','%']; 
+      errorMessage: "This field is contain specific character!",
+      validator: (value: string): ValidationFunctionResult => {
+        let charArr = ['@', '!', '%'];
         let isValid = true;
-        if (value) {
+        let invalidChar = '';
+        if (value && typeof(value)=="string") {
           charArr.forEach(element => {
-            isValid = isValid && !(value.indexOf(element)!=-1);
+            isValid = isValid && !(value.indexOf(element) != -1);
           });
         }
-        
+
         return {
-          isValid:isValid,
-          errorMessage: "This field is contain specific character!"
+          isValid: isValid,
+          detailErrorMessage: `contain specific characters in , ! %`
         };
       }
     },
@@ -45,23 +46,19 @@ export class FormComponentComponent implements OnInit {
       type: ValidationType.specific,
       errorMessage: "This field is need to be unique",
       validator: (value: string): ValidationFunctionResult => {
-        let nameArr = ["Hiep", "Trung"]
-        if (nameArr.indexOf(value) != -1)
-          return {
-            isValid: false,
-            errorMessage: "This field is need to be unique"
-          }
+        let nameArr = ["Hiep!", "Trung"];
+        let isValid = !(nameArr.indexOf(value) != -1);
         return {
-          isValid: true,
-          errorMessage: ""
-        };
+          isValid: isValid,
+          detailErrorMessage: "This field can not contain Hiep! & Trung"
+        }
       }
     }
     ];
   }
 
   onSubmitForm(formGroup: NgForm) {
-    var result = this._validatorService.validateForm(formGroup, this._validationRules);
+    var result = this._validatorService.validateForm(formGroup, this._validationRules,this.isShowingInnerError);
     if (!result.isValid) {
       this.formErrors = result.errors;
       console.log("invalid", result);

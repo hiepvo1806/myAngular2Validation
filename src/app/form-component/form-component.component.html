@@ -28,7 +28,10 @@
         <div [hidden]="!formErrors.description" class="form-control-feedback">{{formErrors.description}}</div>
       </div>
     </div>
-
+<div>
+  <label>showing inner error : </label>
+  <input type="checkbox" [(ngModel)]="isShowingInnerError" name="innerError" />
+</div>
     <div>
       <button type="submit">submit</button>
     </div>

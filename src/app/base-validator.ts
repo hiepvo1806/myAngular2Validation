@@ -6,7 +6,7 @@ export class BaseFormValidationService {
     constructor() { }
     protected formErrors: any[] = [];
 
-    public validateForm(formGroup: NgForm, _validationRules: Array<ValidationRule>): ValidationResult {
+    public validateForm(formGroup: NgForm, _validationRules: Array<ValidationRule>, isShowingInnerError?:boolean): ValidationResult {
         var controlName;
         var errorMsgs = [];
         var errorInstance = {};
@@ -24,7 +24,7 @@ export class BaseFormValidationService {
                 var ruleResult = rule.validator(control.value);
                 if(!ruleResult.isValid) {
                     controlValid = false;
-                    errorMsgs.push(ruleResult.errorMessage);
+                    errorMsgs.push( isShowingInnerError ?  rule.errorMessage +': '+ ruleResult.detailErrorMessage : rule.errorMessage );
                 }
             });
             //normal rules
@@ -36,7 +36,7 @@ export class BaseFormValidationService {
             }
             
             isFormValid = isFormValid && controlValid;
-            if(!controlValid) errorInstance[controlName] = errorMsgs.join(",");
+            if(!controlValid) errorInstance[controlName] = errorMsgs.join(";;;");
         }
         return {
             isValid: isFormValid,
@@ -78,5 +78,5 @@ export class ValidationResult {
 
 export class ValidationFunctionResult {
     isValid: boolean;
-    errorMessage: string;
+    detailErrorMessage: string;
 }
