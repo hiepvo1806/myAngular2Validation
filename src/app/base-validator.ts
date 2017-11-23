@@ -36,7 +36,7 @@ export class BaseFormValidationService {
             }
             
             isFormValid = isFormValid && controlValid;
-            if(!controlValid) errorInstance[controlName] = errorMsgs.join(";;;");
+            if(!controlValid) errorInstance[controlName] = errorMsgs.join("/");
         }
         return {
             isValid: isFormValid,

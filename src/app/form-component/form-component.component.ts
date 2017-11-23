@@ -46,11 +46,11 @@ export class FormComponentComponent implements OnInit {
       type: ValidationType.specific,
       errorMessage: "This field is need to be unique",
       validator: (value: string): ValidationFunctionResult => {
-        let nameArr = ["Hiep!", "Trung"];
+        let nameArr = ["Hiep!", "Trung","Hiep"];
         let isValid = !(nameArr.indexOf(value) != -1);
         return {
           isValid: isValid,
-          detailErrorMessage: "This field can not contain Hiep! & Trung"
+          detailErrorMessage: "This field can not contain Hiep! & Trung & Hiep"
         }
       }
     }
