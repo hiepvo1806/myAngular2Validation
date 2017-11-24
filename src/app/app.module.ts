@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FormComponentComponent } from './form-component/form-component.component';
-import { BaseFormValidationService } from './base-validator'
+import { BaseFormValidationService } from './base-validator';
+import { ValidationComponentComponent } from './validation-component/validation-component.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponentComponent
+    FormComponentComponent,
+    ValidationComponentComponent
   ],
   imports: [
     BrowserModule,
