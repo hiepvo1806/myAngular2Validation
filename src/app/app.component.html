@@ -16,7 +16,14 @@
 </p>
 
 
-<div *appHvStructural>
-  <span>content</span>
-  <button>click me</button>
-</div>
+<form>
+  <span>test1 :</span>
+  <input type="text" *appHvStructural [(ngModel)]="content" name="content" />
+  <div style="display:block">
+      <span>second test</span>
+      <input myOptional />
+  </div>
+  
+</form>
+
+<div ></div>

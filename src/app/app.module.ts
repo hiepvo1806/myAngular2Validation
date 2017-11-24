@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { FormComponentComponent } from './form-component/form-component.component';
 import { BaseFormValidationService } from './base-validator';
 import { HvValidatorDirective } from './hv-validator.directive';
-import { HvStructuralDirective } from './hv-structural.directive'
+import { HvStructuralDirective } from './hv-structural.directive';
+import { NewInputDirectiveDirective } from './new-input-directive.directive'
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponentComponent,
     HvValidatorDirective,
-    HvStructuralDirective
+    HvStructuralDirective,
+    NewInputDirectiveDirective
   ],
   imports: [
     BrowserModule,
