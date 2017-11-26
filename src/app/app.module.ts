@@ -1,19 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FormComponentComponent } from './form-component/form-component.component';
 import { BaseFormValidationService } from './base-validator'
-
+import { ValidationModule } from './validation/validation.module';
+import { TestDirectiveComponent } from './test-directive/test-directive.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponentComponent
+    FormComponentComponent,
+    TestDirectiveComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ValidationModule,
+    ReactiveFormsModule
   ],
   providers: [
     BaseFormValidationService
